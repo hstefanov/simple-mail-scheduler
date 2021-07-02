@@ -2,7 +2,9 @@ version: "3.8"
 services:
   server:
     container_name: react-rest-service
-    image: node:12-alpine
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     links:
       - redis
     environment:
@@ -11,37 +13,38 @@ services:
       - "4000:4000"
     volumes:
       - ./server:/code:delegated
+      - "/app/node_modules"
     networks:
       - reactapp-network
-    working_dir: /code
-    command: npm start
     depends_on:
       - db
 
   client:
     container_name: react-client-app
-    image: node:12-alpine
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
       - ./client:/code:delegated
+      - "/app/node_modules"
     networks:
       - reactapp-network
-    working_dir: /code
-    command: npm start
 
   worker:
-    image: node:12-alpine
+    build:
+      context: ./worker
+      dockerfile: Dockerfile
     links:
       - redis
     environment:
       - REDIS_URL=redis://cache
     volumes:
       - ./worker:/code:delegated
+      - "/app/node_modules"
     networks:
       - reactapp-network
-    working_dir: /code
-    command: npm start
     depends_on:
       - db
 
