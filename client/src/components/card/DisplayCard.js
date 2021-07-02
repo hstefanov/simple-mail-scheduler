@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button';
-import Api from '../../services/api'
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -36,7 +36,26 @@ export default function DisplayCard(props) {
     const classes = useStyles();
 
     const handleOnClick = (from, to, message, cronExpression) => {
-        Api.scheduleMail(from, to, message, cronExpression);
+        const url = 'http://127.0.0.1:4000/api/schedule';
+    
+        const data = { 
+            job : {
+                type : "sendMail",
+                status: "Scheduled",
+                from: from,
+                to : to,
+                message : message,
+                executeAt: `${cronExpression}`
+            }
+        }
+
+        axios.post(url, data)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
     }
 
     return (
