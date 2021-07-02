@@ -40,8 +40,8 @@ services:
       - redis
     environment:
       - REDIS_URL=redis://cache
-      - MAILGUN_API_KEY=redis://cache
-      - MAILGUN_API_DOMAIN=redis://cache
+      - MAILGUN_API_KEY=
+      - MAILGUN_API_DOMAIN=
     volumes:
       - ./worker:/code:delegated
       - "/app/node_modules"
