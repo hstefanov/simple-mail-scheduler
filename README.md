@@ -19,5 +19,5 @@ Using Docker Compose is basically a three-step process:
 4. After a while all the services should be ready. The client is setup to run on `localhost:3000`
 5. When open the client, you will be promped to provide on options of cron-like expression tab, for triggering task, and a from with inputs for origin of the email, recepient and message.
 6. When click `Send mail`, the system should write the task into `MongoDB` and push a message into the queue (`Redis`) for all subscribers to Process the message.
-   ![](./mongo_tasks.JPG)
+   ![](.docs/mongo_tasks.JPG)
 7. Any of the subscriber checks wheather the message is not already process and if not enqueue the message into MailGun API.
