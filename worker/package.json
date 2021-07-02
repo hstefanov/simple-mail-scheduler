@@ -1,0 +1,17 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.13.0",
+    "node-schedule": "^2.0.0",
+    "redis": "^3.1.2"
+  }
+}
