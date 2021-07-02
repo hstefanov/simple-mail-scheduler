@@ -3,9 +3,7 @@ var mongoose = require('mongoose');
 const Job = require('./models/Job');
 const schedule = require('node-schedule');
 const mailgun = require("mailgun-js");
-const DOMAIN = 'sandbox30106fd34725485e92f7b9739d6e5e3f.mailgun.org';
-const API_KEY = '13ea1346285b800b3b6140328c85f649-aff8aa95-90156acc';
-const mg = mailgun({apiKey: API_KEY, domain: DOMAIN});
+const mg = mailgun({apiKey: process.env.MAILGUN_API_KEY, domain: MAILGUN_API_DOMAIN});
 
 mongoose
   .connect('mongodb://mongodb/jobs', { useNewUrlParser: true, useUnifiedTopology: true})
